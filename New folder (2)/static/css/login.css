@@ -1,0 +1,67 @@
+body {
+    background-color: rgb(133, 207, 226);
+}
+
+#logindiv {
+    background-color: gray;
+    width: 500px;
+    height: 500px;
+    display: grid;
+    place-items: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 6%;
+    border: 2px solid rgb(255, 251, 251);
+    font-size: 25px;
+    border-radius: 6px;
+}
+
+#login_header {
+    text-shadow: 6px 8px 8px;
+}
+
+#i {
+    padding-left: 50px;
+    padding-top: 15px;
+    padding-right: 50px;
+    padding-bottom: 15px;
+    background-color: rgb(241, 238, 238);
+    font-size: 15px;
+    border-radius: 4px;
+}
+
+#login_btn {
+    margin-top: 50px;
+    margin-left: 36%;
+    padding: 10px 30px;
+    border-radius: 4px;
+    font-size: 15px;
+    background-color: rgb(99, 197, 230);
+}
+
+#sigupdiv {
+    background-color: gray;
+    width: 500px;
+    height: 500px;
+    display: grid;
+    place-items: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 6%;
+    border: 2px solid rgb(255, 251, 251);
+    font-size: 20px;
+    border-radius: 6px;
+    display: none;
+}
+
+#const_btn1 {
+    background-color: rgb(223, 201, 201);
+    margin-left: 30%;
+    margin-top: 3px;
+}
+
+#const_btn2 {
+    background-color: rgb(223, 201, 201);
+    margin-top: 3px;
+    margin-left: 20%;
+}

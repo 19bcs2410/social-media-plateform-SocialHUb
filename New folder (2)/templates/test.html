@@ -1,0 +1,150 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var socket = io();
+
+            var peer;
+            var count = 1;
+
+            socket.on('cancel_req', function() {
+                alert('request cancel');
+            })
+
+            $('#cancel_btn').click(function() {
+
+                socket.emit('cancel_video');
+
+
+
+            })
+
+
+
+
+            $('#video_btn').click(function() {
+                peer = new Peer();
+                var my_id;
+
+
+
+
+
+                peer.on('open', function(id) {
+                    my_id = id;
+
+                    socket.emit('video_call', id);
+
+                });
+
+                navigator.mediaDevices.getUserMedia({
+                    'video': true,
+                    'audio': true
+                }).then(function(stream) {
+
+
+
+                    document.querySelector('#sender_video').srcObject = stream;
+                    $('#video_end').click(function() {
+
+                        stream.getVideoTracks()[0].enabled = false;
+
+
+
+                    });
+
+
+                    peer.on('call', function(call) {
+
+                        call.answer(stream)
+                        call.on('stream', function(user_stream) {
+
+                            //document.querySelector('#receiver_video').srcObject = user_stream;
+
+                        })
+                    })
+
+
+                    socket.on('new_user', function(new_user_id) {
+
+                        if (my_id != new_user_id) {
+
+                            $('#call_notify').slideDown();
+
+
+                            $('#accept_btn').click(function() {
+                                const call = peer.call(new_user_id, stream);
+
+
+                                call.on('stream', function(user_stream) {
+
+                                    var video_player = $(`<video id='user${count}' autoplay style="height:200px;width:200px"></video>`);
+
+                                    $('#video_div').append(video_player);
+
+
+                                    document.querySelector(`#user${count}`).srcObject = user_stream;
+
+
+
+
+
+                                })
+
+                                count += 1;
+                                console.log(count)
+
+
+
+
+                            })
+
+                        }
+
+                    })
+
+
+
+                });
+                //
+
+            })
+
+
+
+
+
+
+
+
+
+        })
+    </script>
+
+</head>
+
+<body>
+
+    <button id='video_btn'>Start video call </button>
+    <button id='video_end'>end call</button>
+    <div id='call_notify' style="display: none;">
+        <button id='accept_btn'>accept</button>
+        <button id='cancel_btn'>cancel</button>
+    </div>
+
+    <div id='video_div'></div>
+
+    <video id='sender_video' autoplay style="height: 500px;width:500px"></video>
+
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,2022 @@
+<htmL>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+
+    <!--CSS Start-->
+
+    <style>
+        #msgbox {
+            position: absolute;
+            width: 100%;
+            height: 484px;
+            background-color: rgb(170, 160, 160);
+            overflow: auto;
+            border-radius: 4px;
+        }
+        
+        #leftmsg {
+            width: auto;
+            height: auto;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+            left: 10px;
+            margin-top: 10px;
+            margin-right: 55%;
+            padding-left: 20px;
+            padding-top: 5px;
+            margin-left: 5px;
+            padding-bottom: 5px;
+            padding-right: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            clear: both;
+        }
+        
+        #rightmsg {
+            width: auto;
+            height: auto;
+            background-image: linear-gradient(to right, rgba(125, 248, 125, 0.9), rgba(124, 243, 124, 0.9));
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            margin-top: 10px;
+            margin-left: 55%;
+            margin-right: 5px;
+            padding-left: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-right: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        
+        #inputbox {
+            position: absolute;
+            width: 500px;
+            height: 35px;
+            background-color: whitesmoke;
+            margin-left: 2%;
+            border-radius: 15px;
+            padding-left: 35px;
+            padding-right: 38px;
+            border: 2px solid black;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+        }
+        
+        #sendbtn {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            position: absolute;
+            width: 100px;
+            height: 35px;
+            background-color: rgb(175, 214, 236);
+            margin-left: 85%;
+            border-radius: 4px;
+            color: rgb(0, 0, 0);
+            border: 2px solid rgb(65, 63, 63);
+        }
+        
+        #emojibtn {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            padding: 0 0;
+            background-color: whitesmoke;
+            margin-left: 4%;
+            border-radius: 10px;
+            color: rgb(0, 0, 0);
+            border: 0px solid whitesmoke;
+            margin-top: 6px;
+        }
+        
+        #imgbtn {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            padding: 0 0;
+            background-color: rgb(248, 245, 245);
+            margin-left: 63%;
+            border-radius: 10px;
+            color: rgb(0, 0, 0);
+            border: 0px solid whitesmoke;
+            margin-top: 6px;
+        }
+        
+        #emojibtn_select {
+            margin-top: 10px;
+            margin-left: 5px;
+            font-size: 20px;
+            width: 28px;
+            height: 28px;
+            padding: 0 0;
+            background-color: rgb(231, 231, 231);
+            border-radius: 12px;
+            color: rgb(0, 0, 0);
+            border: 0px solid whitesmoke;
+            cursor: pointer;
+        }
+        
+        #input {
+            position: fixed;
+            margin-top: 484px;
+            width: 768px;
+            height: 36px;
+            background-color: rgb(170, 160, 160);
+        }
+        
+        .username {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            color: #f86565;
+            text-align: left;
+            padding-bottom: 4px;
+            margin-top: 3px;
+        }
+        
+        .message {
+            word-break: break-all;
+            font-size: 14px;
+        }
+        
+        #msgbox::-webkit-scrollbar {
+            display: none;
+            /* Safari and Chrome */
+        }
+        
+        #emojis::-webkit-scrollbar {
+            display: none;
+            /* Safari and Chrome */
+        }
+        
+        #emojis {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background-color: rgb(231, 231, 231);
+            margin-top: 300px;
+            margin-left: 15px;
+            border-radius: 6px;
+            overflow: auto;
+            display: none;
+        }
+        
+        #image_msg_div {
+            position: absolute;
+            width: 200px;
+            height: 80px;
+            background-color: rgb(247, 236, 236);
+            margin-top: 400px;
+            margin-left: 400px;
+            border-radius: 6px;
+            overflow: auto;
+            display: none;
+        }
+        
+        #zoom_div {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background-color: rgb(231, 231, 231);
+            margin-top: 150px;
+            margin-left: 75px;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        #zoom_img {
+            width: 300px;
+            height: 200px;
+        }
+        
+        #sender {
+            width: 100%;
+            height: 50px;
+            background-image: linear-gradient(to right, rgba(0, 0, 255, 1), rgba(0, 0, 255, 0));
+        }
+        
+        #sender_img {
+            position: absolute;
+            margin-left: 10px;
+            width: 40px;
+            height: 40px;
+            margin-top: 5px;
+            border-radius: 20px;
+            border: 1px solid rgb(39, 38, 38);
+            cursor: pointer;
+        }
+        
+        #sender_name {
+            position: absolute;
+            margin-left: 8%;
+            margin-top: 6px;
+            font-size: 1.2em;
+            color: whitesmoke;
+            cursor: copy;
+        }
+        
+        #status {
+            position: absolute;
+            margin-left: 8%;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: whitesmoke;
+        }
+        
+        body {
+            background-color: rgb(214, 213, 213);
+        }
+        
+        #header_image_div {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            width: 100%;
+            height: 150px;
+            background-image: linear-gradient(120deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1));
+            justify-content: center;
+            border-radius: 4px;
+        }
+        
+        #header_image_div>img {
+            margin-top: 5px;
+            border-radius: 70px;
+            height: 140px;
+            width: 140px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+        }
+        
+        #header_image_div>h1 {
+            margin-top: 40px;
+            margin-left: 20px;
+            text-shadow: 4px 4px 8px;
+            font-size: 20px;
+            color: rgba(14, 12, 12, 0.877);
+        }
+        
+        #message_div {
+            position: absolute;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            width: 50%;
+            height: 570px;
+            margin-left: 30%;
+        }
+        
+        #friends_list_div {
+            overflow: auto;
+            border-radius: 4px;
+            position: absolute;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            margin-left: 4%;
+            margin-right: 20px;
+            width: 25%;
+            height: 570px;
+            background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0.7), rgba(255, 0, 0, 0.2));
+        }
+        
+        #setting_div {
+            border-radius: 4px;
+            position: absolute;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            margin-left: 82%;
+            margin-right: 20px;
+            width: 16%;
+            height: 570px;
+            background-image: linear-gradient(to bottom, rgba(0, 255, 0, 0.7), rgba(0, 255, 0, 0.2));
+        }
+        
+        #friends_list_div::-webkit-scrollbar {
+            display: none;
+        }
+        
+        #friend_card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            margin-left: 70px;
+            margin-top: 20px;
+            width: 60%;
+            height: 50px;
+            display: flex;
+            background-color: rgb(128, 128, 255);
+            border-radius: 4px;
+            padding: 2px 5px;
+            cursor: pointer;
+        }
+        
+        #setting_card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            margin-left: 20px;
+            margin-top: 20px;
+            width: 70%;
+            height: 35px;
+            display: flex;
+            background-color: blue;
+            border-radius: 4px;
+            padding: 2px 5px;
+        }
+        
+        #setting_card>input {
+            margin-top: 2px;
+            font-size: 20px;
+            position: absolute;
+            border: 2px solid blue;
+            background-color: blue;
+            padding-right: 60px;
+            padding-top: 2px;
+            padding-left: 50px;
+        }
+        
+        #setting_div>input {
+            margin-top: 20px;
+            margin-left: 10px;
+            width: 80%;
+            height: 35px;
+            padding: 5px 10px;
+        }
+        
+        #search_button {
+            position: absolute;
+            background-color: rgb(167, 167, 221);
+            margin-top: 20px;
+            width: 35px;
+            height: 33px;
+            border: 2px solid black;
+        }
+        
+        #friend_card>img {
+            border: 2px solid rgb(219, 218, 218);
+            position: absolute;
+            border-radius: 50px;
+            height: 45px;
+            width: 45px;
+        }
+        
+        #friend_card1>img {
+            border: 2px solid rgb(219, 218, 218);
+            position: absolute;
+            border-radius: 50px;
+            height: 45px;
+            width: 45px;
+        }
+        
+        #online_status {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #6d6565;
+            border-radius: 20px;
+            margin-left: 40px;
+            margin-top: 5px;
+            border: 1px solid rgb(59, 56, 245);
+        }
+        
+        #friend_card>h1 {
+            margin-left: 70px;
+            margin-top: 10px;
+            font-size: 20px;
+            position: absolute;
+        }
+        
+        #friend_card1>h1 {
+            margin-left: 70px;
+            margin-top: 10px;
+            font-size: 20px;
+            position: absolute;
+        }
+        
+        #edit_btn {
+            margin-top: 120px;
+            margin-left: 70%;
+            width: 80px;
+            height: 25px;
+            background-color: rgb(115, 115, 255);
+            border-radius: 4px;
+            border: 2px solid rgb(85, 82, 82);
+            color: whitesmoke;
+            cursor: pointer;
+        }
+        
+        #edit_div {
+            padding-top: 10px;
+            position: absolute;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            background-color: rgb(202, 199, 199);
+            width: 200px;
+            height: 200px;
+            border-radius: 4px;
+            margin-left: 1260px;
+            padding-left: 45px;
+            padding-top: 20px;
+            display: none;
+        }
+        
+        #i_btn {
+            position: absolute;
+            margin-top: 10px;
+            margin-left: 5px;
+            background-color: rgb(255, 161, 161);
+            padding: 3px 10px;
+            cursor: pointer;
+        }
+        
+        #upload_input {
+            position: absolute;
+            margin-top: 50px;
+        }
+        
+        #upload_btn {
+            position: absolute;
+            margin-top: 80px;
+            background-color: rgb(181, 181, 250);
+            border-radius: 4px;
+            border: 2px solid black;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        
+        #search_result_div {
+            position: absolute;
+            overflow: auto;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            width: 350px;
+            height: 570px;
+            margin-left: 75.4%;
+            background-color: rgb(218, 211, 211);
+            display: none;
+        }
+        
+        #search_result_div::-webkit-scrollbar {
+            display: none;
+        }
+        
+        #close_search_result_div {
+            display: flex;
+            position: fixed;
+            background-color: rgb(218, 211, 211);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            width: 22.8%;
+            height: 35px;
+            border-radius: 2px;
+        }
+        
+        #close_search_result_btn {
+            position: absolute;
+            margin-left: 90%;
+            margin-top: 6px;
+            border-radius: 4px;
+            background-color: rgb(207, 18, 18);
+            color: whitesmoke;
+            border-radius: 15px;
+            border: 2px solid rgb(153, 150, 150);
+            cursor: pointer;
+        }
+        
+        #close_search_result_div>h1 {
+            margin-top: 4px;
+            position: absolute;
+            font-size: 20px;
+            margin-left: 100px;
+            color: rgb(29, 28, 28);
+        }
+        
+        #found_friend_card {
+            margin-top: 60px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            width: 250px;
+            height: 40px;
+            display: flex;
+            background-color: rgb(169, 169, 255);
+            margin-left: 50px;
+            border-radius: 4px;
+        }
+        
+        #found_friend_card>h1 {
+            position: absolute;
+            font-size: 15px;
+            margin-top: 8px;
+            width: 150px;
+            margin-left: 50px;
+        }
+        
+        #found_friend_card>img {
+            margin-left: 10px;
+            margin-top: 5px;
+            width: 30px;
+            height: 30px;
+            border: 2px solid black;
+            border-radius: 15px;
+        }
+        
+        #found_friend_card>button {
+            position: absolute;
+            background-color: rgb(10, 46, 248);
+            margin-top: 4px;
+            height: 30px;
+            border-radius: 4px;
+            color: whitesmoke;
+            margin-left: 200px;
+            cursor: pointer;
+        }
+        
+        h1#unread_msg {
+            position: absolute;
+            margin-left: 230px;
+            margin-top: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            width: 15px;
+            height: 15px;
+            background-color: rgb(194, 3, 3);
+            border-radius: 20px;
+            font-size: 10px;
+            padding-left: 2px;
+            color: rgb(255, 254, 254);
+            display: none;
+        }
+        
+        #files {
+            position: absolute;
+        }
+        
+        #image_file {
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+        
+        #download_btn {
+            background-color: rgb(240, 235, 235);
+            border-radius: 20px;
+            margin-left: 280px;
+            padding: 0px 1px;
+            border: 2px solid whitesmoke;
+        }
+        
+        #video_call_div {
+            position: absolute;
+            width: 700px;
+            height: 450px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            background-color: rgb(231, 231, 231);
+            margin-top: 1px;
+            margin-left: 30px;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        #video_caller_name {
+            margin-top: 5px;
+            margin-left: 250px;
+            background-color: rgb(221, 221, 230);
+            color: rgb(34, 23, 23);
+            margin-right: 250px;
+            padding: 5px 20px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: copy;
+        }
+        
+        #video_tag {
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            margin-left: 5px;
+            margin-top: 270px;
+            cursor: none;
+        }
+        
+        #video_tag1 {
+            position: absolute;
+            height: 300px;
+            width: 450px;
+            margin-left: 130px;
+            margin-top: 20px;
+            cursor: none;
+        }
+        
+        #video_btn {
+            position: absolute;
+            margin-left: 600px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            font-size: 30px;
+            margin-top: 40px;
+            padding: 10px 10px;
+            border: 0px solid rgb(231, 231, 231);
+            background-color: rgb(231, 231, 231);
+            border-radius: 25px;
+        }
+        
+        #video_btn:hover {
+            background-color: rgb(221, 221, 230);
+        }
+        
+        #audio_btn {
+            position: absolute;
+            margin-left: 600px;
+            margin-top: 120px;
+            font-size: 30px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            border: 0px solid rgb(231, 231, 231);
+            background-color: rgb(231, 231, 231);
+        }
+        
+        #audio_btn:hover {
+            background-color: rgb(221, 221, 230);
+        }
+        
+        #call_end_btn {
+            position: absolute;
+            margin-left: 600px;
+            margin-top: 200px;
+            font-size: 30px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            border: 0px solid rgb(231, 231, 231);
+            background-color: rgb(231, 231, 231);
+            color: red;
+        }
+        
+        #call_end_btn:hover {
+            background-color: rgb(221, 221, 230);
+        }
+        
+        #video_main_btn {
+            position: absolute;
+            margin-left: 560px;
+            font-size: 20px;
+            margin-top: 2px;
+            padding: 4px 4px;
+            border: 0px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            background-color: rgb(165, 164, 164);
+            cursor: pointer;
+            border-radius: 15px;
+        }
+        
+        #video_call_notification_div {
+            position: absolute;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            width: 300px;
+            height: 50px;
+            background-color: rgba(189, 233, 253, 0.4);
+            margin-top: 400px;
+            margin-left: 1210px;
+            border-radius: 4px;
+            border: 1px solid rgb(100, 100, 100);
+            display: none;
+        }
+        
+        #call_attend_btn {
+            font-size: 25px;
+            margin: 5px 30px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            width: 35px;
+            height: 35px;
+            background-color: rgba(19, 252, 19, 0.8);
+            border: 1px solid rgb(61, 60, 60);
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        #call_cancel_btn {
+            font-size: 25px;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+            width: 35px;
+            height: 35px;
+            margin-bottom: 15px;
+            background-color: rgba(255, 28, 28, 0.8);
+            border: 1px solid rgb(78, 77, 77);
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        #incoming_text {
+            position: absolute;
+            margin-top: 10px;
+            margin-left: 150px;
+        }
+        
+        #incoming_text_name {
+            position: absolute;
+            margin-top: 30px;
+            margin-left: 150px;
+        }
+    </style>
+
+
+
+
+
+    <!--CSS end-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <!--client js start-->
+    <script>
+        var socket = io();
+        var receiver_username = '';
+        var username = '';
+        var first_click_button = true;
+        var first_click_button_class = '';
+        var unread_counter = {};
+        socket.on('connect', function() {
+            console.log('connected');
+
+            $('#sendbtn').click(function() {
+                var msg = $('#inputbox').val().trim();
+
+                if (msg.length > 0) {
+                    var new_node = $('<div id=\'rightmsg\'></div>').html(` <span class='username'>You</span>
+                    <span class='message'>${msg}</span>
+                    
+                    </span>`);
+                    $('#msgbox').append(new_node);
+
+                    $('#inputbox').val('');
+                    $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
+                    mystr = '';
+                    socket.emit('send_msg', {
+                        'username_profile_name': username,
+                        'msg': msg,
+                        'receiver_name': receiver_username
+                    });
+
+
+
+                }
+
+
+            });
+
+            $('#inputbox').focus(function() {
+
+
+                $(this).keypress(function(ev) {
+                    if (ev.keyCode === 13) {
+
+                        var msg = $('#inputbox').val().trim();
+
+                        if (msg.length > 0) {
+                            var new_node = $('<div id=\'rightmsg\'></div>').html(` <span class='username'>You</span>
+                            <span class='message'>${msg}</span>
+                            
+                            </span>`);
+                            $('#msgbox').append(new_node);
+
+                            $('#inputbox').val('');
+                            $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
+                            mystr = '';
+                            socket.emit('send_msg', {
+                                'username_profile_name': username,
+                                'msg': msg,
+                                'receiver_name': receiver_username
+                            });
+
+
+
+                        }
+
+                    }
+                })
+            });
+
+            $('#i_btn').click(function() {
+
+                socket.emit('change_profile_name', {
+                    'data': $('#profile_change_text').val(),
+                    'username': username
+                });
+
+                $('#account_profile_name').text($('#profile_change_text').val());
+                $('#profile_change_text').val('');
+
+
+
+            });
+
+
+
+            $('#video_main_btn').click(function() {
+                $('#video_caller_name').text(receiver_username);
+                $('#video_call_div').show();
+
+                var peer;
+
+                peer = new Peer();
+                var my_id;
+                var my_stream;
+
+
+
+                peer.on('open', function(id) {
+                    my_id = id;
+
+                    //socket.emit('video_call', id);
+                    socket.emit('video_call_initiate', {
+                        'username': username,
+                        'receiver_name': receiver_username
+
+                    });
+
+                });
+
+                navigator.mediaDevices.getUserMedia({
+                    'video': true,
+                    'audio': true
+                }).then(function(stream) {
+
+                    $('#video_btn').click(function() {
+                        let enable = stream.getVideoTracks()[0].enabled;
+                        if (enable) {
+
+                            $('#video_btn_i').attr('class', "fas fa-video-slash");
+                            stream.getVideoTracks()[0].enabled = false;
+                            $('#video_btn').css('color', 'red');
+
+                        } else {
+                            $('#video_btn_i').attr('class', "fas fa-video");
+                            stream.getVideoTracks()[0].enabled = true;
+                            $('#video_btn').css('color', 'black');
+
+                        }
+
+
+                    });
+                    $('#audio_btn').click(function() {
+
+                        let enable = stream.getAudioTracks()[0].enabled;
+                        if (enable) {
+                            $('#audio_btn_i').attr('class', "fas fa-microphone-slash")
+                            stream.getAudioTracks()[0].enabled = false;
+                            $('#audio_btn').css('color', 'red');
+
+                        } else {
+                            $('#audio_btn_i').attr('class', "fas fa-microphone")
+                            stream.getAudioTracks()[0].enabled = true;
+                            $('#audio_btn').css('color', 'black');
+
+                        }
+
+
+
+                    });
+                    $('#call_end_btn').click(function() {
+                        stream.getVideoTracks()[0].stop();
+                        stream.getAudioTracks()[0].stop();
+                        peer.disconnect();
+                        $('#video_call_div').hide();
+                        socket.emit('call_disconnected', {
+                            'username': username,
+                            'receiver_name': receiver_username
+                        });
+
+
+
+                    })
+
+                    socket.on('not_attend_video_call', function() {
+                        $('#video_call_div').hide();
+
+                        stream.getVideoTracks()[0].stop();
+                        stream.getAudioTracks()[0].stop();
+
+
+
+                    });
+
+
+
+                    document.querySelector('#video_tag').srcObject = stream;
+
+
+
+                    socket.on('yes_attend_video_call', function(new_user_id) {
+
+
+                        if (my_id != new_user_id) {
+                            console.log(new_user_id);
+
+                            const call = peer.call(new_user_id, stream);
+                            call.on('stream', function(user_stream) {
+
+                                document.querySelector('#video_tag1').srcObject = user_stream;
+
+                            })
+
+                        }
+
+                    });
+
+
+
+                });
+
+
+
+                /*
+                socket.emit('video_call_initiate', {
+                    'username': username,
+                    'receiver_name': receiver_username
+                    
+                });
+                */
+
+
+
+
+
+            });
+
+            $('#search_button').click(function() {
+
+                var msg = $('#search_input_text').val();
+
+                if (msg.trim().length > 0) {
+                    socket.emit('find_friend', {
+                        'msg': msg.trim()
+                    });
+                }
+
+            });
+
+
+
+
+
+
+        });
+
+        socket.on('video_attend_notification', function(data) {
+
+            var attend_status = false;
+            $('p#incoming_text_name').text(data['username'])
+
+
+
+            $('#video_call_notification_div').slideDown();
+
+
+            setTimeout(function() {
+
+                $('#video_call_notification_div').slideUp();
+                if (!attend_status) {
+
+                    socket.emit('not_attend_call', {
+                        'sender_name': data['receiver_name'],
+                        'receiver_name': data['username']
+                    });
+                    $('#video_call_div').hide();
+
+                }
+
+
+            }, 10000);
+
+
+
+
+            $('#call_attend_btn').click(function() {
+                $('#video_caller_name').text(data['username']);
+
+
+                $('#video_call_div').show();
+                $('#video_call_notification_div').hide();
+                attend_status = true
+
+                var peer = new Peer()
+
+                let sender_name = data['username']
+                let receiver_name = data['receiver_name']
+                peer.on('open', id => {
+                    socket.emit('yes_attend_call', {
+                        'sender_name': receiver_name,
+                        'receiver_name': sender_name,
+                        'id': id
+                    });
+                    console.log(id);
+                })
+
+                navigator.mediaDevices.getUserMedia({
+                    'video': true,
+                    'audio': true
+                }).then(function(stream) {
+                    $('#video_btn').click(function() {
+                        let enable = stream.getVideoTracks()[0].enabled;
+                        if (enable) {
+                            $('#video_btn_i').attr('class', "fas fa-video-slash");
+                            stream.getVideoTracks()[0].enabled = false;
+                            $('#video_btn').css('color', 'red');
+
+                        } else {
+                            $('#video_btn_i').attr('class', "fas fa-video");
+                            stream.getVideoTracks()[0].enabled = true;
+                            $('#video_btn').css('color', 'black');
+
+                        }
+
+
+                    });
+                    $('#audio_btn').click(function() {
+
+                        let enable = stream.getAudioTracks()[0].enabled;
+                        if (enable) {
+                            $('#audio_btn_i').attr('class', "fas fa-microphone-slash")
+                            stream.getAudioTracks()[0].enabled = false;
+                            $('#audio_btn').css('color', 'red');
+
+                        } else {
+                            $('#audio_btn_i').attr('class', "fas fa-microphone")
+                            stream.getAudioTracks()[0].enabled = true;
+                            $('#audio_btn').css('color', 'black');
+
+                        }
+
+
+
+                    });
+                    $('#call_end_btn').click(function() {
+                        stream.getVideoTracks()[0].stop();
+                        stream.getAudioTracks()[0].stop();
+                        peer.disconnect();
+                        socket.emit('not_attend_call', {
+                            'sender_name': data['receiver_name'],
+                            'receiver_name': data['username']
+                        });
+                        $('#video_call_div').hide();
+
+
+
+                    })
+
+                    document.querySelector('#video_tag').srcObject = stream;
+
+
+                    peer.on('call', function(call) {
+                        call.answer(stream)
+                        call.on('stream', function(user_stream) {
+
+                            document.querySelector('#video_tag1').srcObject = user_stream;
+
+                        })
+                    });
+
+                    socket.on('call_disconnect_to_receiver', function() {
+
+                        stream.getVideoTracks()[0].stop();
+                        stream.getAudioTracks()[0].stop();
+                        peer.disconnect();
+                        socket.emit('not_attend_call', {
+                            'sender_name': data['receiver_name'],
+                            'receiver_name': data['username']
+                        });
+                        $('#video_call_div').hide();
+
+
+                    });
+
+
+                });
+
+
+
+
+
+
+
+
+            });
+            //===============================================================================
+            $('#call_cancel_btn').click(function() {
+
+                $('#video_call_notification_div').hide();
+                socket.emit('not_attend_call', {
+                    'sender_name': data['receiver_name'],
+                    'receiver_name': data['username']
+                });
+                $('#video_call_div').hide();
+            })
+
+        });
+
+
+
+        socket.on('e1', function(data) {
+
+            username = data['data'];
+
+            socket.emit('get_friends_list', {
+                'username': username
+            });
+
+
+
+        });
+
+
+        socket.on('msg_received', function(data) {
+            let username_profile_name = data['username_profile_name'];
+            let url = '';
+            let msg = '';
+
+            if (data['check_type'] == 'msg') {
+                msg = data['msg'];
+                url = '';
+            } else {
+                url = data['url'];
+                msg = '';
+            }
+
+
+            let sender_name = data['username_profile_name'];
+
+            if (receiver_username == sender_name) {
+
+
+                if (msg) {
+
+                    if (msg.length > 0) {
+                        var new_node = $('<div id=\'leftmsg\'></div>').html(` <span class='username'>${username_profile_name}</span>
+                        <span class='message'>${msg}</span>
+                        
+                        </span>`);
+                        $('#msgbox').append(new_node);
+
+
+                        $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
+
+
+
+
+                    }
+
+                } else {
+
+
+                    let img = document.createElement('img');
+                    img.src = url;
+
+                    img.onload = function(e) {
+                        let canvas = document.createElement('canvas');
+                        canvas.width = 300;
+                        canvas.height = 300;
+
+                        let context = canvas.getContext('2d');
+                        context.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+                        let srcenc = context.canvas.toDataURL(e.target, 'image/jpeg');
+
+
+
+
+
+
+
+
+
+                        var new_node = $('<div id=\'leftmsg\'></div>').html(` <span class='username'>${username_profile_name}</span>
+                        
+                        <img src=${srcenc}>
+                        <p>${data['filename']}</p>
+                        <a download=${data['filename']} href=${url}><button id='download_btn'><i style="font-size:24px" class="fa">&#xf0ab;</i></button></a>
+                        
+                        `);
+                        $('#msgbox').append(new_node);
+
+
+                        $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
+                    }
+
+
+                }
+
+
+
+
+
+
+            } else {
+
+                var c = sender_name + '_f';
+                var count = sender_name + 'count';
+                unread_counter[count] += 1;
+                $(`h1.${c}#unread_msg`).text(unread_counter[count]).show();
+
+
+            }
+
+
+
+
+
+        });
+
+        socket.on('take_username_name', function(data) {
+            receiver_username = data['username'];
+
+            var c1 = receiver_username + '_f';
+            var count1 = receiver_username + 'count';
+            if (unread_counter[count1] > 0) {
+
+                unread_counter[count1] = 0;
+                $(`h1.${c1}#unread_msg`).hide();
+
+            };
+
+
+
+
+
+            socket.emit('take_past_msg', {
+                'username': username,
+                'receiver_name': receiver_username
+            });
+
+
+        });
+        socket.on('get_past_msg', function(data) {
+            $('#msgbox').empty();
+            var past_msg = data['data'];
+
+            past_msg.forEach((val) => {
+                var line = val.trim();
+                var split_check = line.split('<>')
+
+                if (split_check[0] == 'msg') {
+
+
+                    var split_line = split_check[1].split('::');
+
+                    if (split_line[0] === username) {
+                        var new_node = $('<div id=\'rightmsg\'></div>').html(` <span class='username'>You</span>
+                    <span class='message'>${split_line[1]}</span>
+                    
+                    </span>`);
+                        $('#msgbox').append(new_node);
+
+                    } else {
+                        var new_node = $('<div id=\'leftmsg\'></div>').html(` <span class='username'>${split_line[0]}</span>
+                    <span class='message'>${split_line[1]}</span>
+                    
+                    </span>`);
+                        $('#msgbox').append(new_node);
+
+
+                    }
+
+                } else {
+
+                    let file_url = split_check[1].split('<1>');
+                    var file_name = file_url[0];
+
+                    let img_url = file_url[1].split('::');
+
+                    if (img_url[0] === username) {
+
+
+                        let img = document.createElement('img');
+                        img.src = img_url[1];
+
+                        img.onload = function(e) {
+
+                            let canvas = document.createElement('canvas');
+                            canvas.width = 300;
+                            canvas.height = 300;
+
+                            let context = canvas.getContext('2d');
+                            context.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+                            let srcenc = context.canvas.toDataURL(e.target, 'image/jpeg');
+
+
+                            var new_node = $('<div id=\'rightmsg\'></div>').html(` <span class='username'>You</span>
+                    
+                    <img src=${srcenc}>
+                    <p>${file_name}</p>
+                    <a download=${file_name} href=${img_url[1]}><button id='download_btn'><i style="font-size:24px" class="fa">&#xf0ab;</i></button></a>
+                    
+                    `);
+                            $('#msgbox').append(new_node);
+
+
+                        }
+
+                    } else {
+
+                        let img = document.createElement('img');
+                        img.src = img_url[1];
+
+                        img.onload = function(e) {
+
+                            let canvas = document.createElement('canvas');
+                            canvas.width = 300;
+                            canvas.height = 300;
+
+                            let context = canvas.getContext('2d');
+                            context.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+                            let srcenc = context.canvas.toDataURL(e.target, 'image/jpeg');
+
+
+
+                            var new_node = $('<div id=\'leftmsg\'></div>').html(` <span class='username'>${img_url[0]}</span>
+                    <img src=${srcenc}>
+                    <p>${file_name}</p>
+                    <a download=${file_name} href=${img_url[1]}><button id='download_btn'><i style="font-size:24px" class="fa">&#xf0ab;</i></button></a>
+                    
+                    `);
+                            $('#msgbox').append(new_node);
+
+                        }
+
+
+
+
+                    }
+                }
+
+
+
+            });
+
+
+        });
+
+        var online_friend_list = [];
+
+
+
+
+        socket.on('take_friends_list', function(data) {
+
+            $('#friends_list_div').empty();
+            /*
+            <h1 style="color:rgb(255, 255, 255);margin-left:35%;text-shadow: 8px 4px 6px">Friends</h1>
+        <hr>
+            */
+            var h_d = $("<h1 style='color:rgb(255,255,255);margin-left:35%; text-shadow:8px 4px 6px'>Friends</h1>");
+            var h_r = $('<hr>');
+            $('#friends_list_div').append(h_d, h_r);
+
+            var friend_data = data;
+            online_friend_list = friend_data['data'];
+            var status_dic = friend_data['online_list'];
+
+            friend_data['data'].forEach((v) => {
+                var x = v + 'count';
+
+                unread_counter[x] = 0;
+
+
+
+                var c = v + '_f';
+                var card = $(`<div id='friend_card' class=${c}></div>`).html(`<img class=${c} src='http://127.0.0.1:5000/static/contents/${v}.jpg'>  <div class=${c} id='online_status'></div>  <h1 id='card_name' class=${c}>${v}</h1 > <h1 id='unread_msg' class=${c}>${100}</h1>`);
+                $('#friends_list_div').append(card);
+
+
+
+
+
+
+
+                if (status_dic[v] === 'true') {
+
+                    var c_n = v + '_f';
+                    $(`div.${c_n}#online_status`).css({
+                        'background-color': 'rgb(19, 245, 19)'
+
+
+                    });
+
+
+
+
+
+                };
+                if (status_dic[v] === 'false') {
+                    var c_n = v + '_f';
+                    $(`div.${c_n}#online_status`).css({
+                        'background-color': '#6d6565'
+
+
+                    });
+
+
+                }
+
+
+
+
+
+
+
+
+            });
+
+            $('#sender_name').text(online_friend_list[0]);
+            $('#sender_img').attr('src', `http://127.0.0.1:5000/static/contents/${online_friend_list[0]}.jpg`);
+
+            var online_status_store = [];
+            var second_click_button_class = '';
+
+
+
+            $('div').click(function() {
+
+                if ($(this).attr('id') == 'friend_card') {
+
+
+
+
+
+
+                    if (first_click_button) {
+                        first_click_button_class = $(this).attr('class');
+
+                        online_status_store = $(`div.${first_click_button_class}#online_status`).attr('style').split(':');
+
+                        online_status_store[1] = online_status_store[1].trim();
+                        online_status_store[1] = online_status_store[1].split(';')[0];
+                        console.log(online_status_store);
+
+
+
+                        $(this).css({
+                            'background-color': 'blue'
+                        });
+                        first_click_button = false;
+
+
+                    };
+
+                    if ($(this).attr('class') != first_click_button_class) {
+                        second_click_button_class = $(this).attr('class');
+
+
+                        $(this).css({
+                            'background-color': 'blue'
+                        });
+                        $(`div.${first_click_button_class}`).css('background-color', 'rgb(128, 128, 255)');
+                        $(`div.${first_click_button_class}#online_status`).css(online_status_store[0], online_status_store[1]);
+                        online_status_store = $(`div.${second_click_button_class}#online_status`).attr('style').split(':');
+                        online_status_store[1] = online_status_store[1].trim();
+                        online_status_store[1] = online_status_store[1].split(';')[0];
+
+                        first_click_button_class = $(this).attr('class');
+
+
+                    };
+
+
+                    $('#sender_name').text($(`h1#card_name.${$(this).attr('class')}`).text());
+                    $('#sender_img').attr('src', $(`img.${$(this).attr('class')}`).attr('src'));
+
+                    socket.emit('get_receiver_username', {
+                        'data': $(this).attr('class')
+
+                    })
+
+
+                };
+
+
+
+            });
+
+        });
+
+        socket.on('get_find_friend', function(data) {
+            $('#search_result_div').empty();
+            /*
+             <div id='close_search_result_div'>
+            <h1>Found Friends</h1>
+
+            <button id='close_search_result_btn'>X</button>
+        </div>
+
+            */
+            var h_d = $("<div id='close_search_result_div'></div>").html("<h1>Found Friends</h1> <button id='close_search_result_btn'>X</button>");
+            $('#search_result_div').append(h_d);
+
+
+            $('#close_search_result_btn').click(function() {
+                $('#search_result_div').hide();
+
+            });
+
+
+
+
+
+            var f = data['data'];
+
+            $('#search_result_div').show();
+
+            f.forEach((val) => {
+                var p_n = val[0];
+                var u_n = val[1];
+
+
+
+                var c = $(`<div id='found_friend_card'></div>`).html(`<img src='http://127.0.0.1:5000/static/contents/${u_n}.jpg'> <h1>${p_n}</h1> <button class='add_friend_btn' id=${u_n}>Add</button>`);
+                $('#search_result_div').append(c);
+
+
+            })
+
+            $('.add_friend_btn').click(function() {
+
+                socket.emit('add_friend_mylist', {
+                    'username': username,
+                    'friend_username': $(this).attr('id')
+                });
+                $(this).text('Added');
+
+            });
+
+
+
+
+
+
+
+
+            /*
+             <div id='found_friend_card'>
+            <img alt='image' src="{{url_for('static',filename='contents/girl1.jpg')}}">
+            <h1>name</h1>
+            <button>Add</button>
+        </div>
+
+            */
+
+
+        });
+
+
+
+        socket.on('update_online_status', function(data) {
+            var disconnected_friend = data['username'];
+
+            var n = online_friend_list.includes(disconnected_friend);
+
+            if (n) {
+                var c_n = disconnected_friend + '_f';
+                $(`div.${c_n}#online_status`).css({
+                    'background-color': 'rgb(128, 128, 128)'
+                });
+                $(`p.s_s#status`).text('offline');
+
+            }
+
+        });
+
+        socket.on('active_online_status', function(data) {
+
+
+            var connected_friend = data['username'];
+
+            if (connected_friend !== username) {
+
+                var n = online_friend_list.includes(connected_friend);
+
+
+                if (n) {
+                    var c_n = connected_friend + '_f';
+                    $(`div.${c_n}#online_status`).css({
+                        'background-color': 'rgb(19, 245, 19)'
+
+
+                    });
+
+                    $(`p.s_s#status`).text('online');
+
+                }
+
+            }
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+        //===========================================================
+
+
+
+
+
+
+
+        function readfile(input) {
+            var file = input.files[0];
+
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function() {
+
+                var img = document.createElement('img');
+                img.src = reader.result;
+
+                img.onload = function(e) {
+                    var canvas = document.createElement('canvas');
+                    canvas.width = 300;
+                    canvas.height = 300;
+
+                    var context = canvas.getContext('2d');
+                    context.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+                    var srcenc = context.canvas.toDataURL(e.target, 'image/jpeg');
+
+
+
+                    var new_node = $('<div id=\'rightmsg\'></div>').html(` <span class='username'>You</span>
+                    
+                    <img src=${srcenc}>
+                    <p>${file.name}</p>
+                    
+                    `);
+                    $('#msgbox').append(new_node);
+
+                    $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
+
+
+
+
+                    socket.emit('send_msg', {
+                        'username_profile_name': username,
+                        'url': reader.result,
+                        'receiver_name': receiver_username,
+                        'filename': file.name
+                    });
+
+                    $('#image_msg_div').hide();
+
+
+
+                    /*
+                    $('#my_img').attr('src', srcenc);
+                    socket.emit('msg', {
+                        'url': srcenc
+                    });
+                    */
+                }
+
+
+            }
+
+        }
+
+
+
+        window.onbeforeunload = function() {
+            socket.emit('client_disconnecting', {
+                'username': username
+            });
+        }
+    </script>
+    <!--client js end-->
+    <!--home_page js start-->
+
+    <script>
+        $(document).ready(function() {
+
+            var mystr = '';
+
+            var send_button = $('#sendbtn');
+            send_button.mouseenter(function() {
+                $(this).css({
+                    'background-color': 'rgb(8, 121, 187)'
+                });
+
+            });
+            send_button.mouseleave(function() {
+                $(this).css({
+                    'background-color': 'rgb(175, 214, 236)'
+                });
+
+            });
+
+
+            $('#edit_btn').click(function() {
+                $('#edit_div').slideToggle();
+
+            });
+
+
+
+            $('#msgbox').click(function() {
+                $('#emojis').hide();
+            });
+
+
+
+
+
+
+
+
+            $('#emojibtn').click(function() {
+
+                $('#emojis').toggle();
+
+            });
+
+            $('#sender_img').click(function() {
+                $('#zoom_div').slideToggle();
+
+            });
+
+            $('#msgbox').click(function() {
+                $('#zoom_div').hide();
+            });
+
+
+
+
+            $('button').click(function() {
+
+                console.log(($('#inputbox').val()));
+
+
+                if ($(this).attr('id') === 'emojibtn_select') {
+
+
+                    //emoji_selected.push($(this).text());
+                    var mystr1
+
+                    if ($('#inputbox').val().trim().length > 0) {
+                        mystr1 = $('#inputbox').val().trim();
+                        mystr = '';
+                    }
+
+                    mystr += $(this).text();
+
+                    if (mystr1 == undefined) {
+                        mystr = '' + mystr;
+
+                    } else {
+
+                        mystr = mystr1 + mystr;
+
+                    }
+
+
+
+
+
+
+                    $('#inputbox').val(mystr);
+
+                }
+
+
+            });
+
+
+
+            console.log(username);
+            setTimeout(() => {
+
+                $('#header_profile_img1').attr('src', `http://127.0.0.1:5000/static/contents/${username}.jpg`);
+
+            }, 500);
+
+            $('#uploadform').attr('action', `/uploadimage/${username}`);
+
+            $('#imgbtn').click(function() {
+                $('#image_msg_div').toggle();
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+        })
+    </script>
+
+
+    <!--home_page js end-->
+
+
+</head>
+
+<body>
+
+
+
+    <div id='header_image_div'>
+        <img id='header_profile_img1' alt='profile image' src=" ">
+        <h1 id='account_profile_name'>{{user_profile_name}}</h1>
+        <button id='edit_btn'>Edit Profile</button>
+
+
+    </div>
+
+
+
+    <div id='message_div'>
+        <div id='sender'>
+            <img id='sender_img' alt='image' src="">
+            <h1 id='sender_name'>Empty Friends</h1>
+
+
+        </div>
+        <div id='msgbox'>
+
+
+        </div>
+
+        <div id='input'>
+
+
+            <input id='inputbox' type='text' placeholder="Type a message">
+
+
+            <button id='sendbtn'>Send </button>
+            <button id='emojibtn'>&#128512</button>
+            <button id='imgbtn'><i class="material-icons">&#xe39d;</i></button>
+            <button id='video_main_btn'><i class="fas fa-video"></i></button>
+
+
+
+
+
+
+        </div>
+        <div id='zoom_div'>
+
+            <img id='zoom_img' src="{{url_for('static',filename='contents/start.jpg')}}">
+
+        </div>
+        <div id='image_msg_div'>
+            <input type='file' onchange='readfile(this)' id='image_file'>
+        </div>
+
+
+        <div id='video_call_div'>
+            <h1 id='video_caller_name'>name</h1>
+            <video autoplay id='video_tag'></video>
+            <video autoplay id='video_tag1'></video>
+
+            <button id='video_btn'><i id='video_btn_i' class="fas fa-video"></i></button>
+            <button id='audio_btn'><i id='audio_btn_i' class="fas fa-microphone"></i></button>
+            <button id='call_end_btn'><i id='call_end_btn_i' class="fas fa-times"></i></button>
+
+        </div>
+
+
+        <div id='emojis'>
+            <button id='emojibtn_select'>&#128512</button>
+
+            <button id='emojibtn_select'>&#128513</button>
+            <button id='emojibtn_select'>&#128514</button>
+            <button id='emojibtn_select'>&#128515</button>
+            <button id='emojibtn_select'>&#128516</button>
+            <button id='emojibtn_select'>&#128517</button>
+            <button id='emojibtn_select'>&#128518</button>
+            <button id='emojibtn_select'>&#128519</button>
+            <button id='emojibtn_select'>&#128520</button>
+            <button id='emojibtn_select'>&#128521</button>
+            <button id='emojibtn_select'>&#128522</button>
+            <button id='emojibtn_select'>&#128523</button>
+            <button id='emojibtn_select'>&#128524</button>
+            <button id='emojibtn_select'>&#128525</button>
+            <button id='emojibtn_select'>&#128526</button>
+            <button id='emojibtn_select'>&#128527</button>
+            <button id='emojibtn_select'>&#128528</button>
+            <button id='emojibtn_select'>&#128529</button>
+            <button id='emojibtn_select'>&#128530</button>
+            <button id='emojibtn_select'>&#128531</button>
+            <button id='emojibtn_select'>&#128532</button>
+            <button id='emojibtn_select'>&#128533</button>
+            <button id='emojibtn_select'>&#128534</button>
+            <button id='emojibtn_select'>&#128535</button>
+            <button id='emojibtn_select'>&#128536</button>
+            <button id='emojibtn_select'>&#128537</button>
+            <button id='emojibtn_select'>&#128538</button>
+            <button id='emojibtn_select'>&#128539</button>
+            <button id='emojibtn_select'>&#128540</button>
+            <button id='emojibtn_select'>&#128541</button>
+            <button id='emojibtn_select'>&#128542</button>
+            <button id='emojibtn_select'>&#128543</button>
+            <button id='emojibtn_select'>&#128544</button>
+            <button id='emojibtn_select'>&#128545</button>
+            <button id='emojibtn_select'>&#128546</button>
+            <button id='emojibtn_select'>&#128547</button>
+            <button id='emojibtn_select'>&#128548</button>
+            <button id='emojibtn_select'>&#128549</button>
+            <button id='emojibtn_select'>&#128550</button>
+            <button id='emojibtn_select'>&#128551</button>
+            <button id='emojibtn_select'>&#128552</button>
+            <button id='emojibtn_select'>&#128553</button>
+            <button id='emojibtn_select'>&#128554</button>
+            <button id='emojibtn_select'>&#128555</button>
+            <button id='emojibtn_select'>&#128556</button>
+            <button id='emojibtn_select'>&#128557</button>
+            <button id='emojibtn_select'>&#128558</button>
+            <button id='emojibtn_select'>&#128559</button>
+            <button id='emojibtn_select'>&#128560</button>
+            <button id='emojibtn_select'>&#128561</button>
+            <button id='emojibtn_select'>&#128562</button>
+            <button id='emojibtn_select'>&#128563</button>
+            <button id='emojibtn_select'>&#128564</button>
+            <button id='emojibtn_select'>&#128565</button>
+            <button id='emojibtn_select'>&#128566</button>
+            <button id='emojibtn_select'>&#128567</button>
+            <button id='emojibtn_select'>&#128577</button>
+            <button id='emojibtn_select'>&#128578</button>
+            <button id='emojibtn_select'>&#128579</button>
+            <button id='emojibtn_select'>&#128580</button>
+            <button id='emojibtn_select'>&#129296</button>
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+    <div id='friends_list_div'>
+
+
+
+
+    </div>
+
+
+    <div id='setting_div'>
+        <input id='search_input_text' type='text' placeholder="Search Friends">
+        <button id='search_button' type="submit"><i class="fa fa-search"></i></button>
+        <form action='/logout' method='post'>
+            <div id='setting_card'>
+                <input type='submit' id='#logout' value='log out'>
+            </div>
+        </form>
+
+        <form action='/setting' method='post'>
+            <div id='setting_card'>
+                <input type='submit' id='#setting' value='setting'>
+
+            </div>
+
+        </form>
+
+
+    </div>
+    <div id='edit_div'>
+
+        <label>Edit Profile Name</label><br>
+        <input type='text' id='profile_change_text'><br>
+        <input id='i_btn' type='submit' value='save'>
+
+        <form id='uploadform' action='/uploadimage' method='post' enctype=multipart/form-data>
+            <input id='upload_input' type=file name=file>
+            <input id='upload_btn' type=submit value=Upload>
+        </form>
+
+    </div>
+    <div id='search_result_div'>
+        <div id='close_search_result_div'>
+            <h1>Found Friends</h1>
+
+            <button id='close_search_result_btn'>X</button>
+        </div>
+
+    </div>
+
+    <div id='video_call_notification_div'>
+        <p id='incoming_text'>Incoming From...</p>
+        <P id='incoming_text_name'>###</P>
+        <button id='call_attend_btn'><i class="fas fa-check"></i></button>
+        <button id='call_cancel_btn'><i class="fas fa-times"></i></button>
+
+    </div>
+
+
+
+
+
+</body>
+
+
+</htmL>

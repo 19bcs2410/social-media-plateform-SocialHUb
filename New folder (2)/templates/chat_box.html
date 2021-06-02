@@ -1,0 +1,543 @@
+<html>
+
+<head>
+
+    <style>
+        #msgbox {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background-color: rgb(170, 160, 160);
+            border: 2px solid black;
+            left: 10px;
+            overflow: auto;
+        }
+        
+        #friend_list {
+            position: absolute;
+            width: 200px;
+            height: 500px;
+            background-color: rgb(212, 16, 16);
+            border: 3px solid black;
+            margin-left: 505px;
+            overflow: auto;
+            padding-top: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        #friend {
+            width: auto;
+            height: auto;
+            background-color: whitesmoke;
+            margin-top: 20px;
+            border: 2px solid gray;
+            text-align: center;
+            padding: 10px 10px;
+        }
+        
+        #leftmsg {
+            width: auto;
+            height: auto;
+            background-color: whitesmoke;
+            left: 10px;
+            margin-top: 10px;
+            margin-right: 55%;
+            padding-left: 20px;
+            padding-top: 5px;
+            margin-left: 5px;
+            padding-bottom: 5px;
+            padding-right: 20px;
+            border-radius: 6px;
+            clear: both;
+        }
+        
+        #rightmsg {
+            width: auto;
+            height: auto;
+            background-color: rgb(101, 250, 146);
+            margin-top: 10px;
+            margin-left: 55%;
+            margin-right: 5px;
+            padding-left: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-right: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        
+        #inputbox {
+            position: absolute;
+            width: 300px;
+            height: 35px;
+            background-color: whitesmoke;
+            margin-left: 2%;
+            border-radius: 15px;
+            padding-left: 35px;
+            padding-right: 10px;
+            border: 2px solid black;
+        }
+        
+        #sendbtn {
+            position: absolute;
+            width: 70px;
+            height: 35px;
+            background-color: rgb(175, 214, 236);
+            margin-left: 75%;
+            border-radius: 1px;
+            color: rgb(0, 0, 0);
+            border: 2px solid rgb(139, 136, 136);
+        }
+        
+        #emojibtn {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            padding: 0 0;
+            background-color: whitesmoke;
+            margin-left: 4%;
+            border-radius: 10px;
+            color: rgb(0, 0, 0);
+            border: 0px solid whitesmoke;
+            margin-top: 6px;
+        }
+        
+        #emojibtn_select {
+            margin-top: 10px;
+            margin-left: 5px;
+            font-size: 20px;
+            width: 28px;
+            height: 28px;
+            padding: 0 0;
+            background-color: rgb(231, 231, 231);
+            border-radius: 12px;
+            color: rgb(0, 0, 0);
+            border: 0px solid whitesmoke;
+        }
+        
+        #input {
+            position: fixed;
+            margin-top: 502px;
+            width: 500px;
+            border-bottom: 2px solid black;
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+            height: 36px;
+            background-color: rgb(170, 160, 160);
+            margin-left: 2px;
+        }
+        
+        .time {
+            font-size: 14px;
+            color: rgb(124, 122, 123);
+            font-family: courier, monospace;
+            margin-left: 140px;
+        }
+        
+        .username {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            color: #f86565;
+            text-align: left;
+            padding-bottom: 4px;
+            margin-top: 3px;
+        }
+        
+        .message {
+            word-break: break-all;
+            font-size: 14px;
+        }
+        
+        #msgbox::-webkit-scrollbar {
+            display: none;
+            /* Safari and Chrome */
+        }
+        
+        #emojis::-webkit-scrollbar {
+            display: none;
+            /* Safari and Chrome */
+        }
+        
+        #emojis {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background-color: rgb(231, 231, 231);
+            margin-top: 300px;
+            margin-left: 15px;
+            border-radius: 6px;
+            overflow: auto;
+            display: none;
+        }
+        
+        #zoom_div {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background-color: rgb(231, 231, 231);
+            margin-top: 150px;
+            margin-left: 75px;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        #zoom_img {
+            width: 300px;
+            height: 200px;
+        }
+        
+        #sender {
+            width: 500px;
+            height: 50px;
+            background-color: rgb(57, 104, 206);
+            margin-top: 20px;
+            margin-left: 2px;
+            border: 2px solid black;
+        }
+        
+        #sender_img {
+            position: absolute;
+            margin-left: 10px;
+            width: 40px;
+            height: 40px;
+            margin-top: 5px;
+            border-radius: 20px;
+            border: 1px solid rgb(39, 38, 38);
+        }
+        
+        #sender_name {
+            position: absolute;
+            margin-left: 8%;
+            margin-top: 6px;
+            font-size: 1.2em;
+            color: whitesmoke;
+        }
+        
+        #status {
+            position: absolute;
+            margin-left: 8%;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: whitesmoke;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(function() {
+            var mystr = '';
+            var send_button = $('#sendbtn');
+            send_button.mouseenter(function() {
+                $(this).css({
+                    'background-color': 'rgb(8, 121, 187)'
+                });
+
+            });
+            send_button.mouseleave(function() {
+                $(this).css({
+                    'background-color': 'rgb(175, 214, 236)'
+                });
+
+            });
+            send_button.click(function() {
+                var msg = $('#inputbox').val().trim();
+
+
+
+                if (msg.length > 0) {
+                    var new_node = $('<div id=\'rightmsg\'></div>').html(`${msg}`);
+                    $('#msgbox').append(new_node);
+
+                    $('#inputbox').val('');
+                    mystr = '';
+                }
+
+
+            });
+            $('#msgbox').click(function() {
+                $('#emojis').hide();
+            })
+
+
+
+
+
+
+            $('#inputbox').focus(function() {
+
+
+                $(this).keypress(function(ev) {
+                    if (ev.keyCode === 13) {
+
+                        var msg = $('#inputbox').val().trim();
+
+                        if (msg.length > 0) {
+                            var new_node = $('<div id=\'rightmsg\'></div>').html(` <span class='username'>username</span>
+                            <span class='message'>${msg}</span>
+                            <span class='time'>4:50pm</span>
+                            </span>`);
+                            $('#msgbox').append(new_node);
+
+                            $('#inputbox').val('');
+                            $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
+                            mystr = '';
+
+
+
+                        }
+
+                    }
+                })
+            });
+
+            $('#emojibtn').click(function() {
+
+                $('#emojis').toggle();
+
+            });
+
+            $('#sender_img').click(function() {
+                $('#zoom_div').slideToggle();
+
+            });
+
+            $('#msgbox').click(function() {
+                $('#zoom_div').hide();
+            })
+
+
+
+
+            $('button').click(function() {
+
+                console.log(($('#inputbox').val()));
+
+
+                if ($(this).attr('id') === 'emojibtn_select') {
+
+
+                    //emoji_selected.push($(this).text());
+                    var mystr1
+
+                    if ($('#inputbox').val().trim().length > 0) {
+                        mystr1 = $('#inputbox').val().trim();
+                        mystr = '';
+                    }
+
+                    mystr += $(this).text();
+
+                    if (mystr1 == undefined) {
+                        mystr = '' + mystr;
+
+                    } else {
+
+                        mystr = mystr1 + mystr;
+
+                    }
+
+
+
+
+
+
+                    $('#inputbox').val(mystr);
+
+                }
+
+
+            })
+
+            $('div').click(function() {
+                if ($(this).attr('id') === 'friend') {
+
+
+                    $('#sender_name').text($(this).text());
+                }
+            })
+
+
+
+
+
+
+
+
+
+
+
+        })
+    </script>
+
+
+</head>
+
+<body>
+    <!--body start-->
+    <div id='sender'>
+        <img id='sender_img' src='start.jpg'>
+        <h1 id='sender_name'>suraj</h1>
+        <p id='status'>online</p>
+
+    </div>
+
+    <div id='friend_list'>
+        <div id='friend'>
+            <span><img src="" alt='image'></span>
+            <span>friend1 </span>
+        </div>
+        <div id='friend'>
+            <span><img src="" alt='image'></span>
+            <span>friend2 </span>
+        </div>
+        <div id='friend'>
+            <span><img src="" alt='image'></span>
+            <span>friend3</span>
+        </div>
+        <div id='friend'>
+            <span><img src="" alt='image'></span>
+            <span>friend4 </span>
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+    <div id='msgbox'>
+        <div id=leftmsg>
+            <span class='username'>username</span>
+            <span class='message'>lfsfls<br>fjlsflsflssf</span>
+            <span class='time'>4:50pm</span>
+        </div>
+        <div id=rightmsg>
+            <span class='username'>username</span>
+            <span class='message'>how are u</span>
+            <span class='time'>4:50pm</span>
+            </span>
+        </div>
+
+        <div id=leftmsg>
+            <span class='username'>username</span>
+            <span class='message'>fine</span>
+            <span class='time'>4:50pm</span>
+        </div>
+        <div id=rightmsg>
+            <span class='username'>username</span>
+            <span class='message'>what are u doing</span>
+            <span class='time'>4:50pm</span>
+            </span>
+        </div>
+
+
+
+
+    </div>
+
+
+    <div id='input'>
+
+        <input id='inputbox' type='text' placeholder="Type a message">
+
+
+        <button id='sendbtn'>Send </button>
+        <button id='emojibtn'>&#128512</button>
+
+
+    </div>
+    <div id='zoom_div'>
+
+        <img id='zoom_img' src='start.jpg'>
+
+    </div>
+
+    <div id='emojis'>
+        <button id='emojibtn_select'>&#128512</button>
+
+        <button id='emojibtn_select'>&#128513</button>
+        <button id='emojibtn_select'>&#128514</button>
+        <button id='emojibtn_select'>&#128515</button>
+        <button id='emojibtn_select'>&#128516</button>
+        <button id='emojibtn_select'>&#128517</button>
+        <button id='emojibtn_select'>&#128518</button>
+        <button id='emojibtn_select'>&#128519</button>
+        <button id='emojibtn_select'>&#128520</button>
+        <button id='emojibtn_select'>&#128521</button>
+        <button id='emojibtn_select'>&#128522</button>
+        <button id='emojibtn_select'>&#128523</button>
+        <button id='emojibtn_select'>&#128524</button>
+        <button id='emojibtn_select'>&#128525</button>
+        <button id='emojibtn_select'>&#128526</button>
+        <button id='emojibtn_select'>&#128527</button>
+        <button id='emojibtn_select'>&#128528</button>
+        <button id='emojibtn_select'>&#128529</button>
+        <button id='emojibtn_select'>&#128530</button>
+        <button id='emojibtn_select'>&#128531</button>
+        <button id='emojibtn_select'>&#128532</button>
+        <button id='emojibtn_select'>&#128533</button>
+        <button id='emojibtn_select'>&#128534</button>
+        <button id='emojibtn_select'>&#128535</button>
+        <button id='emojibtn_select'>&#128536</button>
+        <button id='emojibtn_select'>&#128537</button>
+        <button id='emojibtn_select'>&#128538</button>
+        <button id='emojibtn_select'>&#128539</button>
+        <button id='emojibtn_select'>&#128540</button>
+        <button id='emojibtn_select'>&#128541</button>
+        <button id='emojibtn_select'>&#128542</button>
+        <button id='emojibtn_select'>&#128543</button>
+        <button id='emojibtn_select'>&#128544</button>
+        <button id='emojibtn_select'>&#128545</button>
+        <button id='emojibtn_select'>&#128546</button>
+        <button id='emojibtn_select'>&#128547</button>
+        <button id='emojibtn_select'>&#128548</button>
+        <button id='emojibtn_select'>&#128549</button>
+        <button id='emojibtn_select'>&#128550</button>
+        <button id='emojibtn_select'>&#128551</button>
+        <button id='emojibtn_select'>&#128552</button>
+        <button id='emojibtn_select'>&#128553</button>
+        <button id='emojibtn_select'>&#128554</button>
+        <button id='emojibtn_select'>&#128555</button>
+        <button id='emojibtn_select'>&#128556</button>
+        <button id='emojibtn_select'>&#128557</button>
+        <button id='emojibtn_select'>&#128558</button>
+        <button id='emojibtn_select'>&#128559</button>
+        <button id='emojibtn_select'>&#128560</button>
+        <button id='emojibtn_select'>&#128561</button>
+        <button id='emojibtn_select'>&#128562</button>
+        <button id='emojibtn_select'>&#128563</button>
+        <button id='emojibtn_select'>&#128564</button>
+        <button id='emojibtn_select'>&#128565</button>
+        <button id='emojibtn_select'>&#128566</button>
+        <button id='emojibtn_select'>&#128567</button>
+        <button id='emojibtn_select'>&#128577</button>
+        <button id='emojibtn_select'>&#128578</button>
+        <button id='emojibtn_select'>&#128579</button>
+        <button id='emojibtn_select'>&#128580</button>
+        <button id='emojibtn_select'>&#129296</button>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!--body end-->
+</body>
+
+
+</html>

@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .f1_f {
+            background-color: red;
+            width: auto;
+            height: auto;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div id='main'></div>
+
+    <script>
+        $(document).ready(function() {
+            var c = 'f1';
+            var i = 'f2';
+            var c1 = c + '_f';
+
+
+
+
+            var but = $(`<div class=${c1}></div>`).html(`<h1>hello</h1> <p>loda</p>`)
+            $('#main').append(but);
+
+            $('.f1_f').click(function() {
+                alert($(this).attr('class'));
+            })
+
+        })
+    </script>
+</body>
+
+
+</html>

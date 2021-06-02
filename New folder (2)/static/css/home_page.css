@@ -1,0 +1,325 @@
+#msgbox {
+    position: absolute;
+    width: 100%;
+    height: 484px;
+    background-color: rgb(170, 160, 160);
+    overflow: auto;
+    border-radius: 4px;
+}
+
+#leftmsg {
+    width: auto;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+    left: 10px;
+    margin-top: 10px;
+    margin-right: 55%;
+    padding-left: 20px;
+    padding-top: 5px;
+    margin-left: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    border-radius: 6px;
+    clear: both;
+}
+
+#rightmsg {
+    width: auto;
+    height: auto;
+    background-image: linear-gradient(to right, rgba(125, 248, 125, 0.9), rgba(124, 243, 124, 0.9));
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    margin-top: 10px;
+    margin-left: 55%;
+    margin-right: 5px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+#inputbox {
+    position: absolute;
+    width: 500px;
+    height: 35px;
+    background-color: whitesmoke;
+    margin-left: 2%;
+    border-radius: 15px;
+    padding-left: 35px;
+    padding-right: 10px;
+    border: 2px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+}
+
+#sendbtn {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    position: absolute;
+    width: 100px;
+    height: 35px;
+    background-color: rgb(152, 191, 211);
+    margin-left: 75%;
+    border-radius: 4px;
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(65, 63, 63);
+}
+
+#emojibtn {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    padding: 0 0;
+    background-color: whitesmoke;
+    margin-left: 4%;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    border: 0px solid whitesmoke;
+    margin-top: 6px;
+}
+
+#emojibtn_select {
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 20px;
+    width: 28px;
+    height: 28px;
+    padding: 0 0;
+    background-color: rgb(231, 231, 231);
+    border-radius: 12px;
+    color: rgb(0, 0, 0);
+    border: 0px solid whitesmoke;
+}
+
+#input {
+    position: fixed;
+    margin-top: 484px;
+    width: 768px;
+    height: 36px;
+    background-color: rgb(170, 160, 160);
+}
+
+.username {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    color: #f86565;
+    text-align: left;
+    padding-bottom: 4px;
+    margin-top: 3px;
+}
+
+.message {
+    word-break: break-all;
+    font-size: 14px;
+}
+
+#msgbox::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
+#emojis::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
+#emojis {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    background-color: rgb(231, 231, 231);
+    margin-top: 300px;
+    margin-left: 15px;
+    border-radius: 6px;
+    overflow: auto;
+    display: none;
+}
+
+#zoom_div {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    background-color: rgb(231, 231, 231);
+    margin-top: 150px;
+    margin-left: 75px;
+    border-radius: 6px;
+    display: none;
+}
+
+#zoom_img {
+    width: 300px;
+    height: 200px;
+}
+
+#sender {
+    width: 100%;
+    height: 50px;
+    background-image: linear-gradient(to right, rgba(0, 0, 255, 1), rgba(0, 0, 255, 0));
+}
+
+#sender_img {
+    position: absolute;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 20px;
+    border: 1px solid rgb(39, 38, 38);
+}
+
+#sender_name {
+    position: absolute;
+    margin-left: 8%;
+    margin-top: 6px;
+    font-size: 1.2em;
+    color: whitesmoke;
+}
+
+#status {
+    position: absolute;
+    margin-left: 8%;
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: whitesmoke;
+}
+
+body {
+    background-color: rgb(214, 213, 213);
+}
+
+#header_image_div {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    width: 100%;
+    height: 150px;
+    background-image: linear-gradient(120deg, rgba(23, 190, 187, 1), rgba(240, 166, 202, 1));
+    justify-content: center;
+    border-radius: 4px;
+}
+
+#header_image_div>img {
+    border-radius: 70px;
+    height: 148px;
+    width: 148px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+}
+
+#header_image_div>h1 {
+    margin-top: 40px;
+    margin-left: 20px;
+    text-shadow: 8px 8px 6px;
+    font-size: 30px;
+    color: rgba(14, 12, 12, 0.877);
+}
+
+#message_div {
+    position: absolute;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    width: 50%;
+    height: 570px;
+    margin-left: 30%;
+}
+
+#friends_list_div {
+    overflow: auto;
+    border-radius: 4px;
+    position: absolute;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    margin-left: 4%;
+    margin-right: 20px;
+    width: 25%;
+    height: 570px;
+    background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0.7), rgba(255, 0, 0, 0.2));
+}
+
+#setting_div {
+    border-radius: 4px;
+    position: absolute;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    margin-left: 82%;
+    margin-right: 20px;
+    width: 16%;
+    height: 570px;
+    background-image: linear-gradient(to bottom, rgba(0, 255, 0, 0.7), rgba(0, 255, 0, 0.2));
+}
+
+#friends_list_div::-webkit-scrollbar {
+    display: none;
+}
+
+#friend_card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    margin-left: 70px;
+    margin-top: 20px;
+    width: 60%;
+    height: 50px;
+    display: flex;
+    background-color: blue;
+    border-radius: 4px;
+    padding: 2px 5px;
+}
+
+#setting_card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 70%;
+    height: 35px;
+    display: flex;
+    background-color: blue;
+    border-radius: 4px;
+    padding: 2px 5px;
+}
+
+#setting_card>h1 {
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 20px;
+    position: absolute;
+}
+
+#setting_div>input {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 80%;
+    height: 35px;
+    padding: 5px 10px;
+}
+
+#search_button {
+    position: absolute;
+    background-color: rgb(167, 167, 221);
+    margin-top: 20px;
+    width: 35px;
+    height: 33px;
+    border: 2px solid black;
+}
+
+#friend_card>img {
+    border: 2px solid rgb(219, 218, 218);
+    position: absolute;
+    border-radius: 50px;
+    height: 45px;
+    width: 45px;
+}
+
+#online_status {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(19, 245, 19);
+    border-radius: 20px;
+    margin-left: 40px;
+    margin-top: 5px;
+}
+
+#friend_card>h1 {
+    margin-left: 70px;
+    margin-top: 10px;
+    font-size: 20px;
+    position: absolute;
+}

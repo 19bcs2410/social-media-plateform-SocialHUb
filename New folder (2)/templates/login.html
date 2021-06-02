@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="{{url_for('static',filename='scripts/login.js')}}" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+
+    <div id='logindiv'>
+        <h1 id='login_header'>Log in</h1>
+
+        <form action="/login" method="post">
+            <label>User Name</label><br>
+            <input id='i' type='text' name='username' placeholder="Enter here" /><br>
+            <hr>
+            <label>password</label><br>
+            <input id='i' type='text' name='password' placeholder="Enter here"><br>
+            <input id='login_btn' class='loginbtn' type='submit' value='Log in'>
+        </form>
+
+    </div>
+
+
+    <div id='sigupdiv'>
+        <h1 id='login_header'>Register</h1>
+
+        <form action='/signup' method='post'>
+            <label>User Name</label><br>
+            <input id='i' type='text' name='username' placeholder="Enter here" /><br>
+            <hr>
+            <label> New password</label><br>
+            <input id='i' class='i1' type='text' name='newpassword' placeholder="Enter here"><br>
+            <hr>
+            <label> confirm password</label><br>
+            <input id='i' class='i2' type='text' name='newpassword1' placeholder="Enter here"><br>
+            <input id='login_btn' class='signupbtn' type='submit' value='sign up'>
+        </form>
+
+
+    </div>
+    <div>
+        <button id='const_btn1'> < Login</button>
+        <button id='const_btn2'>New User Register > </button>
+    </div>
+
+</body>
+
+</html>
